@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{d9fa9aaa-df18-5218-09de-27958124a3fa}</ProjectGuid>
+    <ProjectGuid>{0561a401-ec04-d6cd-b949-be78b982d8d6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Unity.VSCode.Editor</AssemblyName>
@@ -246,7 +246,7 @@
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.1.9f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-        <HintPath>D:/Unity/Current Projects/Super Puzzle Ball/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+        <HintPath>D:/Unity/Current Projects/Super-Puzzle-Ball/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.1.9f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -596,22 +596,22 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{cd5f3642-b6e2-5b00-1fc0-7cb8f6cd0a12}</Project>
+      <Project>{407b1f1f-1a70-326c-bb37-1374baa02f13}</Project>
       <Name>UnityEditor.UI</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{be201694-b792-87a1-ba6d-58e1c4969504}</Project>
+      <Project>{3256ebb0-6658-fc41-88d7-71fe58489339}</Project>
       <Name>UnityEngine.UI</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.TestRunner.csproj">
-      <Project>{e6667afd-1633-93d1-1f60-d53fd35d1581}</Project>
+      <Project>{1c72e834-6e3c-c1c9-b0e8-faf3854c654d}</Project>
       <Name>UnityEditor.TestRunner</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.TestRunner.csproj">
-      <Project>{2de72d64-68d4-e582-c4b5-daa040bc4550}</Project>
+      <Project>{3827c623-65d0-06a2-c0de-4787aa9a8351}</Project>
       <Name>UnityEngine.TestRunner</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>

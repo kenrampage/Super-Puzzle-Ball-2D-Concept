@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{1230e238-d790-607c-23d8-5ab9bd1e1eec}</ProjectGuid>
+    <ProjectGuid>{0387af7b-3e58-7be9-cac0-c41a80cc0d41}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Unity.2D.SpriteShape.Editor</AssemblyName>
@@ -256,7 +256,7 @@
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.1.9f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-        <HintPath>D:/Unity/Current Projects/Super Puzzle Ball/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+        <HintPath>D:/Unity/Current Projects/Super-Puzzle-Ball/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.1.9f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -606,47 +606,47 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity.InternalAPIEditorBridge.001.csproj">
-      <Project>{da20162a-ac54-ac6b-7aa6-980947dfa418}</Project>
+      <Project>{b0eca322-a1a6-4e82-cc33-39f8ff44f20d}</Project>
       <Name>Unity.InternalAPIEditorBridge.001</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Common.Editor.csproj">
-      <Project>{f2df88f7-9899-433d-17bb-bf1b18b8b7b3}</Project>
+      <Project>{2393cd6c-7381-a628-aebb-ac982358f361}</Project>
       <Name>Unity.2D.Common.Editor</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Common.Runtime.csproj">
-      <Project>{ac2e9234-b6f0-b1ad-56e4-f3c310cef219}</Project>
+      <Project>{48b9d415-5546-40b5-b0c4-e5d97a8a2ad4}</Project>
       <Name>Unity.2D.Common.Runtime</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.SpriteShape.Runtime.csproj">
-      <Project>{8bc01b86-abd7-5f54-ee2a-12e59933030b}</Project>
+      <Project>{ef98b7fb-e201-2699-87e9-adbaa68482d6}</Project>
       <Name>Unity.2D.SpriteShape.Runtime</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Path.Editor.csproj">
-      <Project>{837f7400-f003-e08b-c235-00387d3c81f1}</Project>
+      <Project>{cf6c7a27-370e-dfe5-ae54-54edb0eac160}</Project>
       <Name>Unity.2D.Path.Editor</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{cd5f3642-b6e2-5b00-1fc0-7cb8f6cd0a12}</Project>
+      <Project>{407b1f1f-1a70-326c-bb37-1374baa02f13}</Project>
       <Name>UnityEditor.UI</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{be201694-b792-87a1-ba6d-58e1c4969504}</Project>
+      <Project>{3256ebb0-6658-fc41-88d7-71fe58489339}</Project>
       <Name>UnityEngine.UI</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.TestRunner.csproj">
-      <Project>{e6667afd-1633-93d1-1f60-d53fd35d1581}</Project>
+      <Project>{1c72e834-6e3c-c1c9-b0e8-faf3854c654d}</Project>
       <Name>UnityEditor.TestRunner</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.TestRunner.csproj">
-      <Project>{2de72d64-68d4-e582-c4b5-daa040bc4550}</Project>
+      <Project>{3827c623-65d0-06a2-c0de-4787aa9a8351}</Project>
       <Name>UnityEngine.TestRunner</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
