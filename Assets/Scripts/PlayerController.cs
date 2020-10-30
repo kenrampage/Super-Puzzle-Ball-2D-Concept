@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SPB;
 
 namespace SPB {
 
@@ -39,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
         mouseRotationZ = Mathf.Atan2(mouseDifference.y, mouseDifference.x) * Mathf.Rad2Deg;
         xInput = Input.GetAxis("Horizontal");
-        squarePivotObject.transform.Rotate(Vector3.forward, xInput * rotationSpeed);
+        squarePivotObject.transform.Rotate(Vector3.back, xInput * rotationSpeed);
 
         RotateOnPivot(mouseDifference, wandPivotObject);
 
