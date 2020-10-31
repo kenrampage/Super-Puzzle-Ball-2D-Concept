@@ -58,5 +58,12 @@ namespace SPB
             gameIsPaused = false;
             SceneManager.LoadScene(0);
         }
+
+        public void QuitGame()
+        {
+            Debug.Log("Player has quit the game");
+            Application.Quit();
+
+        }
     }
 }

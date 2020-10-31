@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 8231050185943342754}
   - component: {fileID: 8231050185943342753}
   - component: {fileID: 8231050185943342752}
+  - component: {fileID: 596238810}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -181,13 +182,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wandPivotObject: {fileID: 8231050186139720559}
-  impulseForce: 9
-  mouseDifference: {x: 0, y: 0}
-  xInput: 0
-  rotationSpeed: 2
   squarePivotObject: {fileID: 0}
-  squarePivotRotation: 0
-  mouseRotationZ: 0
+  impulseForce: 9
+  rotationSpeed: 2
 --- !u!58 &8231050185943342753
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -225,6 +222,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &596238810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8231050185943342757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
 --- !u!1 &8231050186139720559
 GameObject:
   m_ObjectHideFlags: 0
