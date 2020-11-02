@@ -7,34 +7,35 @@ using UnityEngine.InputSystem;
 namespace SPB
 {
 
+    // Handles all movement during the game/play scenes
     public class PlayerController : MonoBehaviour
     {
-        private Rigidbody2D playerRb;
-        private float squarePivotRotation;
+        private GameInput controls;
+
         private float mouseRotationZ;
         private Vector2 mouseDifference;
-        private Vector2 movementInput;
-        private float xInput;
-        private float yInput;
+        private Vector2 inputVector;
 
-        public GameObject wandPivotObject;
-        public GameObject environmentPivotObject;
+        public Rigidbody2D playerRb;
+        public GameObject wandObject;
+        public GameObject environmentObject;
         public GameObject gameManager;
-        public GameInput controls;
-        public SpriteRenderer spriteRenderer;
+        public GameObject cooldownOverlay;
 
-
-        public float impulseForce = 5;
         public float rotationSpeed;
-        public float boostCooldown = 5;
-        private float boostNextFireTime = 0;
-        private float boostLastFireTime = 0;
+        public float boostForce = 7;
+        public float boostCooldown = .5f;
 
-        public float boostCooldownLeftPercent;
+        private float boostNextFireTime = 0;
+        private float boostCooldownLeftPercent;
+
 
         private void Awake()
         {
+            // Sets controls variable for InputAction asset
             controls = new GameInput();
+
+            // Subscribes to events and directs output
             controls.Player.Move.performed += context => SetVectorInput(context.ReadValue<Vector2>());
             controls.Player.Move.canceled += context => SetVectorInput(new Vector2(0, 0));
             controls.Player.Boost.performed += context => BoostPlayer();
@@ -42,87 +43,70 @@ namespace SPB
 
         private void OnEnable()
         {
+            // Enables input controls
             controls.Enable();
         }
 
         private void OnDisable()
         {
+            // Disables input controls
             controls.Disable();
-        }
-
-        void Start()
-        {
-            playerRb = GetComponent<Rigidbody2D>();
-            spriteRenderer = GetComponent<SpriteRenderer>();
-        }
-
-        void Update()
-        {
-
-
-
         }
 
         private void FixedUpdate()
         {
-
-            RotatePlayer(wandPivotObject);
-            RotateEnvironment(xInput);
+            // Set the variables for aiming at the mouse
             SetMouseDirection();
 
-            if (boostNextFireTime > Time.time)
-            {
-                boostCooldownLeftPercent = (boostNextFireTime - Time.time) / boostCooldown;
-                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1 - boostCooldownLeftPercent);
-                GameObject.Find("Wand").GetComponent<SpriteRenderer>().enabled = false;
+            // Rotates wand to point at mouse
+            RotateWand(wandObject);
 
+            // Moves/rotates environment based on Vector2 input
+            MoveEnvironment(inputVector);
 
-            }
-            else
-            {
-                boostCooldownLeftPercent = 1;
-                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
-                GameObject.Find("Wand").GetComponent<SpriteRenderer>().enabled = true;
-            }
+            // Calculates cooldown % remaining and manages visual effects for it
+            BoostCooldownEffect();
 
         }
 
-        public void RotatePlayer(GameObject pivotObjectName)
+        // Rotates pivotObjectName to point at mouse cursor
+        public void RotateWand(GameObject pivotObjectName)
         {
             pivotObjectName.transform.rotation = Quaternion.Euler(0f, 0f, mouseRotationZ);
-
         }
 
-        public void RotateEnvironment(float xInput)
+        // Moves/rotates environmentPivotObject based on Vector2 input 
+        public void MoveEnvironment(Vector2 input)
         {
-            environmentPivotObject.transform.Rotate(Vector3.back, xInput * rotationSpeed);
+            environmentObject.transform.Rotate(Vector3.back, input.x * rotationSpeed);
         }
 
-        public void SetVectorInput(in Vector2 vectorInput)
+        // Sets inputVector variable from input action events
+        public void SetVectorInput(in Vector2 context)
         {
-            xInput = vectorInput.x;
-            yInput = vectorInput.y;
+            inputVector = context;
         }
 
+        // Calculates direction and angle between player and mouse
         public void SetMouseDirection()
         {
+            // Calculates the difference between mouse position and player position and normalizes it.
             mouseDifference = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position;
             mouseDifference.Normalize();
+
+            // Calculates the angle in degrees between two normalized values
             mouseRotationZ = Mathf.Atan2(mouseDifference.y, mouseDifference.x) * Mathf.Rad2Deg;
         }
 
+        // Handles boosting player in the direction of the mouse plus setting and checking the cooldown
         public void BoostPlayer()
         {
             if (!GameManager.gameIsPaused)
             {
                 if (boostCooldownLeftPercent == 1)
                 {
-                    playerRb.AddForce(mouseDifference * impulseForce, ForceMode2D.Impulse);
+                    playerRb.AddForce(mouseDifference * boostForce, ForceMode2D.Impulse);
                     boostNextFireTime = Time.time + boostCooldown;
-                    boostLastFireTime = Time.time;
-                    print((boostNextFireTime - Time.time) + " Seconds Left on the boost cooldown");
-
-
                 }
                 else
                 {
@@ -130,7 +114,27 @@ namespace SPB
                 }
             }
 
+        }
 
+        // Calculates boost cooldown then adjusts sprite opacity and enables/disables the wand
+        public void BoostCooldownEffect()
+        {
+            SpriteRenderer spriteRenderer = cooldownOverlay.GetComponent<SpriteRenderer>();
+            
+            if (boostNextFireTime > Time.time)
+            {
+                boostCooldownLeftPercent = (boostNextFireTime - Time.time) / boostCooldown;
+                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, boostCooldownLeftPercent * .4f);
+                GameObject.Find("Wand").GetComponent<SpriteRenderer>().enabled = false;
+
+
+            }
+            else
+            {
+                boostCooldownLeftPercent = 1;
+                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0);
+                GameObject.Find("Wand").GetComponent<SpriteRenderer>().enabled = true;
+            }
         }
     }
 }
