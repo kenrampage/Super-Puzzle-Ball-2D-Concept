@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Target
+  - Powerup
+  - Button
   layers:
   - Default
   - TransparentFX
@@ -38,6 +41,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Behind Environment
+    uniqueID: 1880151847
+    locked: 0
+  - name: Environment
+    uniqueID: 48638971
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

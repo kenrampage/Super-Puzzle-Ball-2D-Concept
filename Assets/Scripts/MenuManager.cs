@@ -4,6 +4,7 @@ using UnityEngine;
 using SPB;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using TMPro;
 
 namespace SPB
 {
@@ -15,6 +16,11 @@ namespace SPB
         public GameObject pauseMenuUI;
         public GameObject startMenuUI;
         public GameObject startOptionsMenuUI;
+        public GameObject levelEndMenuUI;
+        public ScoreKeeper scoreKeeper;
+        public GameManager gameManager;
+        
+        public GameObject uiManager;
 
         // Declare variable for InputAction asset
         public GameInput controls;
@@ -29,7 +35,7 @@ namespace SPB
         }
 
         private void Start()
-        {   
+        {
             // Sets menu visibility based on current scene
             SetMenuStates();
         }
@@ -53,7 +59,7 @@ namespace SPB
         {
             pauseMenuUI.SetActive(false);
             Time.timeScale = 1f;
-            GameManager.gameIsPaused = false;
+            gameManager.gameIsPaused = false;
             GameObject.Find("Main Camera").GetComponent<Animator>().SetBool("isGamePaused", false);
         }
 
@@ -62,14 +68,35 @@ namespace SPB
         {
             pauseMenuUI.SetActive(true);
             Time.timeScale = 0f;
-            GameManager.gameIsPaused = true;
+            gameManager.gameIsPaused = true;
             GameObject.Find("Main Camera").GetComponent<Animator>().SetBool("isGamePaused", true);
         }
 
         // Loading game scenes
-        public void LoadGame()
+        public void StartGame()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            GameManager.level = 1;
+            SceneManager.LoadScene("Game");
+
+        }
+
+        public void LevelEnd()
+        {
+            scoreKeeper.UpdateScoreText();
+            
+            uiManager.transform.Find("GameUI").gameObject.SetActive(false);
+            levelEndMenuUI.SetActive(true);
+            Time.timeScale = 0f;
+            gameManager.gameIsPaused = true;
+            GameObject.Find("Main Camera").GetComponent<Animator>().SetBool("isGamePaused", true);
+        }
+
+        public void StartNextLevel()
+        {
+            GameManager.level += 1;
+            uiManager.transform.Find("GameUI").gameObject.SetActive(true);
+            levelEndMenuUI.SetActive(false);
+            SceneManager.LoadScene("Game", LoadSceneMode.Single);
         }
 
         // Quit to main menu
@@ -77,7 +104,7 @@ namespace SPB
         {
             Debug.Log("Player has quit to the menu");
             Time.timeScale = 1f;
-            GameManager.gameIsPaused = false;
+            gameManager.gameIsPaused = false;
             SceneManager.LoadScene(0);
         }
 
@@ -93,9 +120,13 @@ namespace SPB
         public void GameStateChanger()
         {
 
-            if (GameManager.gameIsPaused)
+            if (gameManager.gameIsPaused)
             {
                 ResumeGame();
+
+            }
+            else if (gameManager.levelIsComplete)
+            {
 
             }
             else
@@ -105,20 +136,29 @@ namespace SPB
 
         }
 
+        public void ScoreText()
+        {
+            if (GameManager.level == 1)
+                ScoreKeeper.level1Time = GameManager.levelTimer;
+        }
+
         // Set Menu States at start
         public void SetMenuStates()
         {
-            if (SceneManager.GetActiveScene().name == "Menu")
+            if (SceneManager.GetActiveScene().name == "StartMenu")
             {
                 startMenuUI.SetActive(true);
                 startOptionsMenuUI.SetActive(false);
                 pauseMenuUI.SetActive(false);
+                GameManager.level = 0;
+
             }
-            else if (SceneManager.GetActiveScene().name == "Level_1")
+            else if (SceneManager.GetActiveScene().name != "StartMenu")
             {
                 startMenuUI.SetActive(false);
                 startOptionsMenuUI.SetActive(false);
                 pauseMenuUI.SetActive(false);
+                levelEndMenuUI.SetActive(false);
             }
         }
 

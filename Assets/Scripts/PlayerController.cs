@@ -14,15 +14,12 @@ namespace SPB
 
         private float mouseRotationZ;
         private Vector2 mouseDifference;
-        private Vector2 inputVector;
 
         public Rigidbody2D playerRb;
         public GameObject wandObject;
-        public GameObject environmentObject;
-        public GameObject gameManager;
+        public GameManager gameManager;
         public GameObject cooldownOverlay;
 
-        public float rotationSpeed;
         public float boostForce = 7;
         public float boostCooldown = .5f;
 
@@ -36,9 +33,12 @@ namespace SPB
             controls = new GameInput();
 
             // Subscribes to events and directs output
-            controls.Player.Move.performed += context => SetVectorInput(context.ReadValue<Vector2>());
-            controls.Player.Move.canceled += context => SetVectorInput(new Vector2(0, 0));
             controls.Player.Boost.performed += context => BoostPlayer();
+        }
+
+        private void Start()
+        {
+            
         }
 
         private void OnEnable()
@@ -61,12 +61,48 @@ namespace SPB
             // Rotates wand to point at mouse
             RotateWand(wandObject);
 
-            // Moves/rotates environment based on Vector2 input
-            MoveEnvironment(inputVector);
-
             // Calculates cooldown % remaining and manages visual effects for it
             BoostCooldownEffect();
 
+        }
+
+        // On collision with 2d colliders
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Target"))
+            {
+                collideWithTarget(other.gameObject);
+            }
+            else if (other.gameObject.CompareTag("Powerup"))
+            {
+                collideWithPowerup(other.gameObject);
+            }
+            else if (other.gameObject.CompareTag("Button"))
+            {
+                collideWithButton(other.gameObject);
+            }
+
+        }
+
+        // When colliding with targets
+        public void collideWithTarget(GameObject other)
+        {
+            Destroy(other);
+            print("Destroyed " + other.name);
+
+        }
+
+        // when colliding with powerups
+        public void collideWithPowerup(GameObject other)
+        {
+            Destroy(other);
+            print("Destroyed " + other.name);
+        }
+
+        // when colliding with buttons
+        public void collideWithButton(GameObject other)
+        {
+            print("Destroyed " + other.name);
         }
 
         // Rotates pivotObjectName to point at mouse cursor
@@ -75,17 +111,7 @@ namespace SPB
             pivotObjectName.transform.rotation = Quaternion.Euler(0f, 0f, mouseRotationZ);
         }
 
-        // Moves/rotates environmentPivotObject based on Vector2 input 
-        public void MoveEnvironment(Vector2 input)
-        {
-            environmentObject.transform.Rotate(Vector3.back, input.x * rotationSpeed);
-        }
 
-        // Sets inputVector variable from input action events
-        public void SetVectorInput(in Vector2 context)
-        {
-            inputVector = context;
-        }
 
         // Calculates direction and angle between player and mouse
         public void SetMouseDirection()
@@ -101,7 +127,7 @@ namespace SPB
         // Handles boosting player in the direction of the mouse plus setting and checking the cooldown
         public void BoostPlayer()
         {
-            if (!GameManager.gameIsPaused)
+            if (!gameManager.gameIsPaused)
             {
                 if (boostCooldownLeftPercent == 1)
                 {
@@ -120,7 +146,7 @@ namespace SPB
         public void BoostCooldownEffect()
         {
             SpriteRenderer spriteRenderer = cooldownOverlay.GetComponent<SpriteRenderer>();
-            
+
             if (boostNextFireTime > Time.time)
             {
                 boostCooldownLeftPercent = (boostNextFireTime - Time.time) / boostCooldown;
@@ -136,6 +162,8 @@ namespace SPB
                 GameObject.Find("Wand").GetComponent<SpriteRenderer>().enabled = true;
             }
         }
+
+
     }
 }
 
