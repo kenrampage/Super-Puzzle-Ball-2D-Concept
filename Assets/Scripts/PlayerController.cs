@@ -38,7 +38,7 @@ namespace SPB
 
         private void Start()
         {
-            
+
         }
 
         private void OnEnable()
@@ -65,6 +65,7 @@ namespace SPB
             BoostCooldownEffect();
 
         }
+
 
         // On collision with 2d colliders
         private void OnCollisionEnter2D(Collision2D other)

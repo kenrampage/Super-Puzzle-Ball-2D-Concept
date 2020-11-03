@@ -15,6 +15,8 @@ namespace SPB
 
         public GameObject levelEndMenuUI;
 
+
+
         public void UpdateScoreText()
         {
             if (GameManager.level == 1)
@@ -47,6 +49,20 @@ namespace SPB
 
         private void Update()
         {
+            
+        }
+
+        public void ResetTimers()
+        {
+            level1Time = 0;
+            level2Time = 0;
+            level3Time = 0;
+            level4Time = 0;
+            level5Time = 0;
+        }
+
+        public void setTimerText()
+        {
             levelEndMenuUI.transform.Find("Level" + 1 + "Time").GetComponent<TextMeshProUGUI>().text = "Level " + 1 + ": " + level1Time.ToString("F2") + " seconds";
             levelEndMenuUI.transform.Find("Level" + 2 + "Time").GetComponent<TextMeshProUGUI>().text = "Level " + 2 + ": " + level2Time.ToString("F2") + " seconds";
             levelEndMenuUI.transform.Find("Level" + 3 + "Time").GetComponent<TextMeshProUGUI>().text = "Level " + 3 + ": " + level3Time.ToString("F2") + " seconds";
@@ -54,5 +70,8 @@ namespace SPB
             levelEndMenuUI.transform.Find("Level" + 5 + "Time").GetComponent<TextMeshProUGUI>().text = "Level " + 5 + ": " + level5Time.ToString("F2") + " seconds";
 
         }
+
     }
 }
+
+

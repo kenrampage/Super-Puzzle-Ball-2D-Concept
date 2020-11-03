@@ -11,7 +11,7 @@ namespace SPB
 
         private Vector2 inputVector;
 
-        public GameObject levelMovableObject;
+        [HideInInspector] public GameObject levelMovableObject;
         public GameManager gameManager;
 
         public float rotationSpeed;
@@ -28,16 +28,17 @@ namespace SPB
 
         private void Start()
         {
-            levelMovableObject = transform.Find(GameManager.level.ToString()).transform.Find("Moveable").gameObject;
             
             if (GameManager.level > 0)
+
             {
                 transform.Find(GameManager.level.ToString()).gameObject.SetActive(true);
-            }
-
-            Time.timeScale = 1f;
-            gameManager.gameIsPaused = false;
-
+                levelMovableObject = transform.Find(GameManager.level.ToString()).transform.Find("Moveable").gameObject;
+                
+            } else
+            {
+                levelMovableObject = transform.Find("1").transform.Find("Moveable").gameObject;
+            }      
 
         }
         private void OnEnable()
