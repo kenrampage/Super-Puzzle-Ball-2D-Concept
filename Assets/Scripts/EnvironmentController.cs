@@ -49,16 +49,17 @@ namespace SPB
         private void FixedUpdate()
         {
             // Moves/rotates environment based on Vector2 input
-            MoveEnvironment(inputVector);
+            MoveEnvironment(GameManager.level);
         }
 
         // Moves/rotates environmentPivotObject based on Vector2 input 
-        public void MoveEnvironment(Vector2 input)
-        {
-            levelMovableObject.transform.Rotate(Vector3.back, input.x * rotationSpeed);
-        }
+        //public void MoveEnvironment(Vector2 input)
+        //{
+        //    levelMovableObject.transform.Rotate(Vector3.back, input.x * rotationSpeed);
+        //}
 
         // Sets inputVector variable from input action events
+
         public void SetVectorInput(in Vector2 context)
         {
             inputVector = context;
@@ -79,6 +80,52 @@ namespace SPB
             }
         }
 
+        // Moves/rotates environmentPivotObject based on Vector2 input 
+        public void MoveEnvironment(int level)
+        {
+            switch (level)
+            {
+                case 1:
+                    //rotationSpeed = .5f;
+                    levelMovableObject.transform.Rotate(Vector3.back, rotationSpeed);
+
+                    //levelMovableObject.transform.Rotate(Vector3.back, inputVector.x * rotationSpeed);
+                    
+                    break;
+
+                case 2:
+                    //rotationSpeed = .5f;
+
+                    if (levelMovableObject.transform.rotation.z > -10 && levelMovableObject.transform.rotation.z < 10)
+                    {
+                        //rotationSpeed = 2;
+                    }
+                    else if (levelMovableObject.transform.rotation.z > 10 && levelMovableObject.transform.rotation.z < -10)
+                    {
+                        //rotationSpeed = -2;
+                    }
+
+                    levelMovableObject.transform.Rotate(Vector3.back, -rotationSpeed);
+
+                    break;
+                case 3:
+                    levelMovableObject.transform.Rotate(Vector3.back, inputVector.x * rotationSpeed);
+                    //print("Level :" + level);
+                    break;
+                case 4:
+                    levelMovableObject.transform.Rotate(Vector3.back, inputVector.x * rotationSpeed);
+                    //print("Level :" + level);
+                    break;
+                case 5:
+                    levelMovableObject.transform.Rotate(Vector3.back, inputVector.x * rotationSpeed);
+                    //print("Level :" + level);
+                    break;
+                default:
+                    print("Default");
+                    break;
+            }
+
+        }
 
     }
 }

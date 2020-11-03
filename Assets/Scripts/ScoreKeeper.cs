@@ -74,19 +74,19 @@ namespace SPB
 
         public void setTimerText()
         {
-            levelEndMenuUI.transform.Find("Level" + 1 + "Time").GetComponent<TextMeshProUGUI>().text = "Level " + 1 + ": " + level1Time.ToString("F2") + " seconds";
-            levelEndMenuUI.transform.Find("Level" + 2 + "Time").GetComponent<TextMeshProUGUI>().text = "Level " + 2 + ": " + level2Time.ToString("F2") + " seconds";
-            levelEndMenuUI.transform.Find("Level" + 3 + "Time").GetComponent<TextMeshProUGUI>().text = "Level " + 3 + ": " + level3Time.ToString("F2") + " seconds";
-            levelEndMenuUI.transform.Find("Level" + 4 + "Time").GetComponent<TextMeshProUGUI>().text = "Level " + 4 + ": " + level4Time.ToString("F2") + " seconds";
-            levelEndMenuUI.transform.Find("Level" + 5 + "Time").GetComponent<TextMeshProUGUI>().text = "Level " + 5 + ": " + level5Time.ToString("F2") + " seconds";
-            levelEndMenuUI.transform.Find("TotalTime").GetComponent<TextMeshProUGUI>().text = "Total: " + totalTime.ToString("F2") + " seconds";
+            levelEndMenuUI.transform.Find("Level" + 1 + "Time").GetComponent<TextMeshProUGUI>().text = "Lvl" + 1 + ": " + level1Time.ToString("F2") + "s";
+            levelEndMenuUI.transform.Find("Level" + 2 + "Time").GetComponent<TextMeshProUGUI>().text = "Lvl" + 2 + ": " + level2Time.ToString("F2") + "s";
+            levelEndMenuUI.transform.Find("Level" + 3 + "Time").GetComponent<TextMeshProUGUI>().text = "Lvl" + 3 + ": " + level3Time.ToString("F2") + "s";
+            levelEndMenuUI.transform.Find("Level" + 4 + "Time").GetComponent<TextMeshProUGUI>().text = "Lvl" + 4 + ": " + level4Time.ToString("F2") + "s";
+            levelEndMenuUI.transform.Find("Level" + 5 + "Time").GetComponent<TextMeshProUGUI>().text = "Lvl" + 5 + ": " + level5Time.ToString("F2") + "s";
+            levelEndMenuUI.transform.Find("TotalTime").GetComponent<TextMeshProUGUI>().text = "Total: " + totalTime.ToString("F2") + "s";
 
-            gameEndMenuUI.transform.Find("Level" + 1 + "Time").GetComponent<TextMeshProUGUI>().text = "Level " + 1 + ": " + level1Time.ToString("F2") + " seconds";
-            gameEndMenuUI.transform.Find("Level" + 2 + "Time").GetComponent<TextMeshProUGUI>().text = "Level " + 2 + ": " + level2Time.ToString("F2") + " seconds";
-            gameEndMenuUI.transform.Find("Level" + 3 + "Time").GetComponent<TextMeshProUGUI>().text = "Level " + 3 + ": " + level3Time.ToString("F2") + " seconds";
-            gameEndMenuUI.transform.Find("Level" + 4 + "Time").GetComponent<TextMeshProUGUI>().text = "Level " + 4 + ": " + level4Time.ToString("F2") + " seconds";
-            gameEndMenuUI.transform.Find("Level" + 5 + "Time").GetComponent<TextMeshProUGUI>().text = "Level " + 5 + ": " + level5Time.ToString("F2") + " seconds";
-            gameEndMenuUI.transform.Find("TotalTime").GetComponent<TextMeshProUGUI>().text = "Total: " + totalTime.ToString("F2") + " seconds";
+            gameEndMenuUI.transform.Find("Level" + 1 + "Time").GetComponent<TextMeshProUGUI>().text = "Lvl" + 1 + ": " + level1Time.ToString("F2") + "s";
+            gameEndMenuUI.transform.Find("Level" + 2 + "Time").GetComponent<TextMeshProUGUI>().text = "Lvl" + 2 + ": " + level2Time.ToString("F2") + "s";
+            gameEndMenuUI.transform.Find("Level" + 3 + "Time").GetComponent<TextMeshProUGUI>().text = "Lvl" + 3 + ": " + level3Time.ToString("F2") + "s";
+            gameEndMenuUI.transform.Find("Level" + 4 + "Time").GetComponent<TextMeshProUGUI>().text = "Lvl" + 4 + ": " + level4Time.ToString("F2") + "s";
+            gameEndMenuUI.transform.Find("Level" + 5 + "Time").GetComponent<TextMeshProUGUI>().text = "Lvl" + 5 + ": " + level5Time.ToString("F2") + "s";
+            gameEndMenuUI.transform.Find("TotalTime").GetComponent<TextMeshProUGUI>().text = "Total: " + totalTime.ToString("F2") + "s";
 
         }
 

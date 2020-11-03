@@ -25,6 +25,10 @@ namespace SPB
 
         public GameInput controls;
 
+        public int levelToTest;
+        public bool testLevels;
+        public bool progressTestLevels;
+
         private void Awake()
         {
             // Set variable as new instance of the InputActions
@@ -33,13 +37,8 @@ namespace SPB
             // Subscribes to events and directs output
             controls.Player.Menu.performed += context => GameStateChanger();
 
-            if(gameRunning){
-                GameManager.level += 1;
-            } else{
-                GameManager.level = 0;
-                scoreKeeper.ResetTimers();
-            }
-            
+            setLevelStates();
+
         }
 
         private void Start()
@@ -54,7 +53,6 @@ namespace SPB
             {
                 player.gameObject.SetActive(true);
             }
-
 
         }
 
@@ -147,19 +145,20 @@ namespace SPB
             if (GameManager.level == 5)
             {
                 UIManager.GameEndMenu(true);
-            } else
+            }
+            else
             {
                 UIManager.LevelEndMenu(true);
             }
-            
+
         }
 
         public void StartNextLevel()
         {
-            
+
             UIManager.LevelEndMenu(false);
             UIManager.GameEndMenu(false);
-            
+
             //UIManager.transform.Find("GameUI").gameObject.SetActive(true);
             SceneManager.LoadScene("Game");
         }
@@ -180,6 +179,28 @@ namespace SPB
             Debug.Log("Player has quit the game");
             Application.Quit();
 
+        }
+
+        public void setLevelStates()
+        {
+            if (gameRunning)
+            {
+                GameManager.level += 1;
+            }
+            else if (!gameRunning && testLevels && progressTestLevels)
+            {
+                GameManager.level = levelToTest;
+                gameRunning = true;
+            }
+            else if (!gameRunning && testLevels)
+            {
+                GameManager.level = levelToTest;
+            }
+            else
+            {
+                GameManager.level = 0;
+                scoreKeeper.ResetTimers();
+            }
         }
 
     }
