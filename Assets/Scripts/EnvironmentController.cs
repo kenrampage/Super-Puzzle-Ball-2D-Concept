@@ -26,21 +26,7 @@ namespace SPB
             controls.Player.Move.canceled += context => SetVectorInput(new Vector2(0, 0));
         }
 
-        private void Start()
-        {
-            
-            if (GameManager.level > 0)
 
-            {
-                transform.Find(GameManager.level.ToString()).gameObject.SetActive(true);
-                levelMovableObject = transform.Find(GameManager.level.ToString()).transform.Find("Moveable").gameObject;
-                
-            } else
-            {
-                levelMovableObject = transform.Find("1").transform.Find("Moveable").gameObject;
-            }      
-
-        }
         private void OnEnable()
         {
             // Enables input controls
@@ -51,6 +37,13 @@ namespace SPB
         {
             // Disables input controls
             controls.Disable();
+
+        }
+
+        private void Start()
+        {
+            SetMovableObject();
+
         }
 
         private void FixedUpdate()
@@ -69,6 +62,21 @@ namespace SPB
         public void SetVectorInput(in Vector2 context)
         {
             inputVector = context;
+        }
+
+        public void SetMovableObject()
+        {
+            if (GameManager.level > 0)
+
+            {
+                transform.Find(GameManager.level.ToString()).gameObject.SetActive(true);
+                levelMovableObject = transform.Find(GameManager.level.ToString()).transform.Find("Moveable").gameObject;
+
+            }
+            else
+            {
+                levelMovableObject = transform.Find("1").transform.Find("Moveable").gameObject;
+            }
         }
 
 

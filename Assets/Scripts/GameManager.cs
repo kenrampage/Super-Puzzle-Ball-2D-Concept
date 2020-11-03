@@ -11,9 +11,10 @@ namespace SPB
     {
 
         public bool gameIsPaused = false;
-        public bool levelIsComplete = false;
+        public bool levelIsComplete;
         public int targetsRemaining;
         public static int level = 0;
+        public static bool gameRunning = false;
         public GameObject environment;
         public UIManager UIManager;
         public ScoreKeeper scoreKeeper;
@@ -31,6 +32,14 @@ namespace SPB
 
             // Subscribes to events and directs output
             controls.Player.Menu.performed += context => GameStateChanger();
+
+            if(gameRunning){
+                GameManager.level += 1;
+            } else{
+                GameManager.level = 0;
+                scoreKeeper.ResetTimers();
+            }
+            
         }
 
         private void Start()
@@ -38,25 +47,26 @@ namespace SPB
             levelStartTime = Time.time;
             Debug.Log("Level is: " + level);
             gameIsPaused = false;
+            levelIsComplete = false;
             Time.timeScale = 1f;
 
             if (level != 0)
             {
                 player.gameObject.SetActive(true);
             }
+
+
         }
 
         private void Update()
         {
             targetsRemaining = GameObject.FindGameObjectsWithTag("Target").Length;
+            levelTimer = Time.time - levelStartTime;
 
-            if (targetsRemaining == 0 && GameManager.level > 0)
+
+            if (levelIsComplete)
             {
                 LevelEnd();
-            }
-            else
-            {
-                levelTimer = Time.time - levelStartTime;
             }
 
         }
@@ -117,9 +127,10 @@ namespace SPB
         // Loading game scenes
         public void StartGame()
         {
-            GameManager.level = 1;
-            //PlayerController.playerActive = true;
-            //player.gameObject.SetActive(true);
+            //GameManager.level = 1;
+            gameRunning = true;
+            gameIsPaused = false;
+            levelIsComplete = false;
             SceneManager.LoadScene("Game");
 
         }
@@ -129,17 +140,27 @@ namespace SPB
             scoreKeeper.UpdateScoreText();
             scoreKeeper.setTimerText();
             UIManager.GameUI(false);
-            UIManager.LevelEndMenu(true);
             Time.timeScale = 0f;
             gameIsPaused = true;
             GameObject.Find("Main Camera").GetComponent<Animator>().SetBool("isGamePaused", true);
+
+            if (GameManager.level == 5)
+            {
+                UIManager.GameEndMenu(true);
+            } else
+            {
+                UIManager.LevelEndMenu(true);
+            }
+            
         }
 
         public void StartNextLevel()
         {
-            GameManager.level += 1;
-            UIManager.transform.Find("GameUI").gameObject.SetActive(true);
+            
             UIManager.LevelEndMenu(false);
+            UIManager.GameEndMenu(false);
+            
+            //UIManager.transform.Find("GameUI").gameObject.SetActive(true);
             SceneManager.LoadScene("Game");
         }
 
@@ -147,11 +168,9 @@ namespace SPB
         public void QuitToMenu()
         {
             Debug.Log("Player has quit to the menu");
-            Time.timeScale = 1f;
-            gameIsPaused = false;
-            //PlayerController.playerActive = false;
-            scoreKeeper.ResetTimers();
-            GameManager.level = 0;
+            UIManager.LevelEndMenu(false);
+            UIManager.GameEndMenu(false);
+            gameRunning = false;
             SceneManager.LoadScene("Game");
         }
 

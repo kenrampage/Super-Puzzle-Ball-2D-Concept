@@ -89,6 +89,10 @@ namespace SPB
         public void collideWithTarget(GameObject other)
         {
             Destroy(other);
+            if (gameManager.targetsRemaining == 1)
+            {
+                gameManager.levelIsComplete = true;
+            }
             print("Destroyed " + other.name);
 
         }

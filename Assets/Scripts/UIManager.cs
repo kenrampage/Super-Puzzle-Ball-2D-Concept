@@ -22,6 +22,7 @@ namespace SPB
         public GameObject startMenuUI;
         public GameObject startOptionsMenuUI;
         public GameObject levelEndMenuUI;
+        public GameObject gameEndMenuUI;
         public GameObject gameUI;
 
         // Update is called once per frame
@@ -80,6 +81,12 @@ namespace SPB
         public void GameUI(bool state)
         {
             gameUI.SetActive(state);
+        }
+
+        public void GameEndMenu(bool state)
+        {
+            //bool state = startMenuUI.gameObject.activeSelf;
+            gameEndMenuUI.SetActive(state);
         }
     }
 
