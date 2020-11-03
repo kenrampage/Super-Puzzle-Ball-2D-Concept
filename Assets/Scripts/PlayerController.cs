@@ -26,6 +26,9 @@ namespace SPB
         private float boostNextFireTime = 0;
         private float boostCooldownLeftPercent;
 
+        public static string controlScheme;
+        public string controlSchemeInput;
+
 
         private void Awake()
         {
@@ -34,6 +37,9 @@ namespace SPB
 
             // Subscribes to events and directs output
             controls.Player.Boost.performed += context => BoostPlayer();
+
+            controlScheme = controlSchemeInput;
+
         }
 
         private void Start()
@@ -122,11 +128,24 @@ namespace SPB
         public void SetMouseDirection()
         {
             // Calculates the difference between mouse position and player position and normalizes it.
-            mouseDifference = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position;
+            switch (controlScheme)
+            {
+                case "a":
+                    mouseDifference = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position;
+                    break;
+                case "b":
+                    mouseDifference = -(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position);
+                    break;
+                default:
+                    mouseDifference = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position;
+                    break;
+            }
+
             mouseDifference.Normalize();
 
             // Calculates the angle in degrees between two normalized values
             mouseRotationZ = Mathf.Atan2(mouseDifference.y, mouseDifference.x) * Mathf.Rad2Deg;
+
         }
 
         // Handles boosting player in the direction of the mouse plus setting and checking the cooldown
@@ -156,15 +175,13 @@ namespace SPB
             {
                 boostCooldownLeftPercent = (boostNextFireTime - Time.time) / boostCooldown;
                 spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, boostCooldownLeftPercent * .4f);
-                GameObject.Find("Wand").GetComponent<SpriteRenderer>().enabled = false;
-
-
+                //GameObject.Find("Wand").GetComponent<SpriteRenderer>().enabled = false;
             }
             else
             {
                 boostCooldownLeftPercent = 1;
                 spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0);
-                GameObject.Find("Wand").GetComponent<SpriteRenderer>().enabled = true;
+                //GameObject.Find("Wand").GetComponent<SpriteRenderer>().enabled = true;
             }
         }
 

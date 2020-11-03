@@ -77,6 +77,7 @@ namespace SPB
             else
             {
                 levelMovableObject = transform.Find("1").transform.Find("Moveable").gameObject;
+                transform.Find("1").gameObject.SetActive(true);
             }
         }
 
@@ -87,25 +88,25 @@ namespace SPB
             {
                 case 1:
                     //rotationSpeed = .5f;
-                    levelMovableObject.transform.Rotate(Vector3.back, rotationSpeed);
-
+                    //levelMovableObject.transform.Rotate(Vector3.back, rotationSpeed);
                     //levelMovableObject.transform.Rotate(Vector3.back, inputVector.x * rotationSpeed);
-                    
+                    //levelMovableObject.transform.position = new Vector2(Mathf.PingPong(Time.time * rotationSpeed, 5), levelMovableObject.transform.position.y);
+
                     break;
 
                 case 2:
                     //rotationSpeed = .5f;
 
-                    if (levelMovableObject.transform.rotation.z > -10 && levelMovableObject.transform.rotation.z < 10)
-                    {
+                    //if (levelMovableObject.transform.rotation.z > -10 && levelMovableObject.transform.rotation.z < 10)
+                    //{
                         //rotationSpeed = 2;
-                    }
-                    else if (levelMovableObject.transform.rotation.z > 10 && levelMovableObject.transform.rotation.z < -10)
-                    {
+                    //}
+                    //else if (levelMovableObject.transform.rotation.z > 10 && levelMovableObject.transform.rotation.z < -10)
+                    //{
                         //rotationSpeed = -2;
-                    }
+                    //}
 
-                    levelMovableObject.transform.Rotate(Vector3.back, -rotationSpeed);
+                    //levelMovableObject.transform.Rotate(Vector3.back, -rotationSpeed);
 
                     break;
                 case 3:

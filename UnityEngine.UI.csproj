@@ -36,6 +36,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="C:\Program Files\Unity\Hub\Editor\2020.1.9f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\UI\Core\Button.cs" />
      <Compile Include="C:\Program Files\Unity\Hub\Editor\2020.1.9f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\UI\Core\Layout\CanvasScaler.cs" />
      <Compile Include="C:\Program Files\Unity\Hub\Editor\2020.1.9f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\UI\Core\IMaskable.cs" />
      <Compile Include="C:\Program Files\Unity\Hub\Editor\2020.1.9f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\UI\Core\Utility\VertexHelper.cs" />
@@ -81,7 +82,6 @@
      <Compile Include="C:\Program Files\Unity\Hub\Editor\2020.1.9f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\UI\Core\MaskUtilities.cs" />
      <Compile Include="C:\Program Files\Unity\Hub\Editor\2020.1.9f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\UI\Core\ScrollRect.cs" />
      <Compile Include="C:\Program Files\Unity\Hub\Editor\2020.1.9f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\UI\Core\StencilMaterial.cs" />
-     <Compile Include="C:\Program Files\Unity\Hub\Editor\2020.1.9f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\UI\Core\Button.cs" />
      <Compile Include="C:\Program Files\Unity\Hub\Editor\2020.1.9f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\UI\Core\Layout\LayoutRebuilder.cs" />
      <Compile Include="C:\Program Files\Unity\Hub\Editor\2020.1.9f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\UI\Core\RawImage.cs" />
      <Compile Include="C:\Program Files\Unity\Hub\Editor\2020.1.9f1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\UI\Core\SpriteState.cs" />
